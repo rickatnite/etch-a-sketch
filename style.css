@@ -1,0 +1,12 @@
+.grid-container {
+    display: flex; /*enable flex layout*/
+    flex-wrap: wrap; /*allow items to wrap to multiple rows*/
+}
+
+.grid-item { /*style each square div and set size*/
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+}
+
