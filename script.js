@@ -23,15 +23,15 @@ function createGrid(gridNum) { //create a new grid
       gridContainer.appendChild(square); //append items to the parent container
 
       square.addEventListener("mouseover", () => { //on mouseover event, change the square color
-        //let opacity = square.style.opacity;
-        square.style.backgroundColor = "#000000"; //change background to chosen color 
-        //square.style.backgroundColor = getRandomRGB(); //make square a random color
+        let opacity = square.style.opacity;
+        //square.style.backgroundColor = "#000000"; //change background to chosen color 
+        square.style.backgroundColor = getRandomRGB(); //make square a random color
 
-        // if (opacity) {
-        //     square.style.opacity = Number(opacity) + 0.1;
-        // } else {
-        //     square.style.opacity = 0.1;
-        // }
+        if (opacity) {
+            square.style.opacity = Number(opacity) + 0.1;
+        } else {
+            square.style.opacity = 0.1;
+        }
       });
     }
 }
@@ -52,7 +52,6 @@ resetButton.addEventListener("click", (updateGrid)); //run updateGrid each time 
     
 
 // extra credit:
-// -make all of the actions function-based
 // -make three buttons: black, random color, and eraser (white)
 // -OR give a drop-down list of basic colors including random option
 // -use a slider to choose the number of grid squares instead of prompt (16-200)
