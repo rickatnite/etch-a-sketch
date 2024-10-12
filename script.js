@@ -1,41 +1,64 @@
-// Add a button on the top of the screen that will send the user a popup 
-// asking for the number of squares per side for the new grid. 
 
-// const button = document.querySelector("button");
-// button.addEventListener("click", () => {
-//     let size = prompt("Enter number of grid squares up to 100.");
-//     gridSize = size;
-//     console.log(gridSize);
-//     console.log(size);
-// });
-let gridNum = prompt("Enter number of grid squares per side up to 100."); // define grid size to determine number of rows and columns
-
+let gridNum = 16; //initial grid size
 const gridContainer = document.getElementById("grid"); //create reference to grid-container element
-gridContainer.style.width = "960px"; //set fixed container width
-gridContainer.style.height = "960px"; //set fixed container height
+createGrid(gridNum); //create 16x16 grid to draw
 
-let squareSize = gridContainer.clientWidth / gridNum; //scale grid square size to fixed container size
 
-for (let i = 0; i < gridNum * gridNum; i++) { //create loop to create divs and add to the container
-  const div = document.createElement("div"); //create reference to grid-item elements
-  div.classList.add("grid-item"); //add elements to classlist
-  div.style.width = `${squareSize}px`; //set width based on scaled square size
-  div.style.height = `${squareSize}px`; //set height based on scaled square size
-  gridContainer.appendChild(div); //append items to the parent container
-  let color = "#000000"; //set color to change square to on mouseover
-  div.addEventListener("mouseover", () => { //on mouseover event, change the square color
-    div.style.backgroundColor = color; //change background to chosen color 
-  });
+function getRandomRGB() { //randomize references to each RGB value 
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`; //returns RGB value to use as color reference
+  }
+
+function createGrid(gridNum) { //create a new grid
+    deleteGrid(); // clear grid for new inputs
+    let squareSize = gridContainer.clientWidth / gridNum; //scale grid square size to fixed container size
+
+    for (let i = 0; i < gridNum * gridNum; i++) { //create loop to create divs and add to the container
+      const square = document.createElement("div"); //create reference to grid-item elements
+      square.classList.add("grid-item"); //add elements to classlist
+      square.style.width = `${squareSize}px`; //set width based on scaled square size
+      square.style.height = `${squareSize}px`; //set height based on scaled square size
+      gridContainer.appendChild(square); //append items to the parent container
+
+      square.addEventListener("mouseover", () => { //on mouseover event, change the square color
+        //let opacity = square.style.opacity;
+        square.style.backgroundColor = "#000000"; //change background to chosen color 
+        //square.style.backgroundColor = getRandomRGB(); //make square a random color
+
+        // if (opacity) {
+        //     square.style.opacity = Number(opacity) + 0.1;
+        // } else {
+        //     square.style.opacity = 0.1;
+        // }
+      });
+    }
 }
 
- 
+function deleteGrid() { //clear grid contents
+    document.querySelector("div").innerHTML = ""; //empty elements from container
+}
 
-// Once entered, the existing grid should be removed, 
-// (use remove children? or replaceChildren but place it before grid creation)
-// and a new grid should be generated in the same total space as before
+function updateGrid() { //clear and update grid with new size squares
+    const gridContainer = document.querySelector("grid"); //create reference to grid-container
+    let newGridNum = prompt("Enter number of grid squares per side up to 100."); //get number of squares from user
+    deleteGrid(); //delete existing grid content
+    createGrid(newGridNum); //create new grid with updated amount of squares
+}
 
-// Research button tags in HTML and how you can make a JavaScript function run when one is clicked.
-// Also check out prompts.
-// You should be able to enter 64 and have a brand new 64x64 grid pop up 
-// without changing the total amount of pixels used.
+const resetButton = document.getElementById("reset"); //reference reset button element
+resetButton.addEventListener("click", (updateGrid)); //run updateGrid each time button is clicked
+    
 
+// extra credit:
+// -make all of the actions function-based
+// -make three buttons: black, random color, and eraser (white)
+// -OR give a drop-down list of basic colors including random option
+// -use a slider to choose the number of grid squares instead of prompt (16-200)
+// -use a radio button or something for "sketch mode" - progressive darkening effect
+
+// appearance:
+// -make the buttons and layout more attractive
+// -frame the container to look like an etch-a-sketch
+// 

@@ -3,11 +3,11 @@
     flex-wrap: wrap;
     box-sizing: border-box;
     border: 1px solid black;
-    overflow: hidden;
+    width: 960px;
+    height: 960px;
 }
 
 .grid-item { /*style each square div and set size*/
-    background-color: white;
     display: flex;
     box-sizing: border-box;
     border: 1px solid black;
