@@ -27,9 +27,9 @@ function createGrid(gridNum) { //create a new grid
         square.style.backgroundColor = "#000000"; //change square color to black on mouseover
         let opacity = square.style.opacity; //variable to hold the opacity style feature
         if (opacity) { //extra credit opacity "sketch mode" - progressive darkening effect
-            square.style.opacity = Number(opacity) + 0.1; //increase opacity by 10% on each mouseover
+            square.style.opacity = Number(opacity) + 0.2; //increase opacity 20% on each mouseover
         } else {
-            square.style.opacity = 0.1; //start at 10%
+            square.style.opacity = 0.2; //start at 20%
         }
       });
     }
